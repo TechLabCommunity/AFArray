@@ -41,6 +41,8 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     AFArray<ulong>& find(T&);
 
+    AFArray<T>& operator=(const AFArray<T>&);
+
     AFArray<T>& operator+(const T&);
 
     AFArray<T>& operator+=(const T&);
@@ -57,6 +59,7 @@ void AFArray<T>:: init(){
   arr = new T[real_len = INIT_DIMENSION];
   n = 0;
   index = -1;
+  GenericIterator<T>::index_iterator = 0;
 }
 
 template <class T>
@@ -138,6 +141,17 @@ AFArray<ulong>& AFArray<T>::find(T& el){
 template <class T>
 const T& AFArray<T>::operator[](ulong i){
   return arr[i];
+}
+
+template <class T>
+AFArray<T>& AFArray<T>::operator=(const AFArray<T>& el){
+  if (this != &el) {
+    reset();
+    for (ulong i=0; i<el.size(); i++){
+      add(el[i]);
+    }
+  }
+  return *this;
 }
 
 template <class T>
