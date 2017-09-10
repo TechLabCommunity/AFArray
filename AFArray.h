@@ -5,7 +5,6 @@
 
 #define INIT_DIMENSION 20
 #define MAX_LENGTH_ARRAY 160
-#define ulong unsigned long
 
 template <typename T> class AFArray : public GenericIterator<T>{
 
@@ -13,7 +12,7 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     T* arr;
 
-    ulong n, real_len, index;
+    uint32_t n, real_len, index;
 
     void amortize();
 
@@ -31,21 +30,27 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     void reset();
 
-    ulong size();
+    uint32_t size();
 
     bool is_full();
 
-    bool is_valid_index(ulong);
+    bool is_valid_index(uint32_t);
 
-    const T& operator[](ulong);
+    const T& operator[](uint32_t);
 
-    AFArray<ulong>& find(T&);
+    AFArray<uint32_t>& find(T&);
+
+    AFArray<T>& slice(uint32_t, uint32_t, uint32_t = 1);
 
     AFArray<T>& operator=(const AFArray<T>&);
 
     AFArray<T>& operator+(const T&);
 
+    AFArray<T>& operator+(const AFArray<T>&);
+
     AFArray<T>& operator+=(const T&);
+
+    AFArray<T>& operator+=(const AFArray<T>&);
 
     bool has_next();
 
@@ -65,7 +70,7 @@ void AFArray<T>:: init(){
 template <class T>
 void AFArray<T>::amortize(){
   T copy_arr[real_len];
-  for (ulong i=0; i<n; i++){
+  for (uint32_t i=0; i<n; i++){
     copy_arr[i] = arr[i];
   }
   memset(arr, 0, real_len);
@@ -74,7 +79,7 @@ void AFArray<T>::amortize(){
   else
     real_len += INIT_DIMENSION;
   arr = new T[real_len];
-  for (ulong i=0; i<n; i++){
+  for (uint32_t i=0; i<n; i++){
     arr[i] = copy_arr[i];
   }
 }
@@ -88,7 +93,7 @@ template <class T>
 AFArray<T>::AFArray(const AFArray<T>* acopy){
   arr = 0;
   arr = new T[real_len = acopy->size()*2];
-  for (ulong i=0; i<acopy->size(); i++){
+  for (uint32_t i=0; i<acopy->size(); i++){
     arr[i] = acopy[i];
   }
   index = acopy->size()-1;
@@ -119,7 +124,7 @@ void AFArray<T>::reset(){
 }
 
 template <class T>
-ulong AFArray<T>::size(){
+uint32_t AFArray<T>::size(){
   return n;
 }
 
@@ -129,9 +134,9 @@ bool AFArray<T>::is_full(){
 }
 
 template <class T>
-AFArray<ulong>& AFArray<T>::find(T& el){
-  AFArray<ulong>* index_list = new AFArray<ulong>();
-  for (ulong i=0; i<size(); i++){
+AFArray<uint32_t>& AFArray<T>::find(T& el){
+  AFArray<uint32_t>* index_list = new AFArray<uint32_t>();
+  for (uint32_t i=0; i<size(); i++){
     if (el == arr[i])
       index_list->add(i);
   }
@@ -139,15 +144,26 @@ AFArray<ulong>& AFArray<T>::find(T& el){
 }
 
 template <class T>
-const T& AFArray<T>::operator[](ulong i){
+const T& AFArray<T>::operator[](uint32_t i){
   return arr[i];
+}
+
+template <class T>
+AFArray<T>& AFArray<T>::slice(uint32_t start, uint32_t end, uint32_t step){
+  AFArray<T>* new_arr = new AFArray<T>();
+  if (end >= n)
+    end = n-1;
+  for (uint32_t i=start; i<=end; i+=step){
+    new_arr->add(arr[i]);
+  }
+  return *new_arr;
 }
 
 template <class T>
 AFArray<T>& AFArray<T>::operator=(const AFArray<T>& el){
   if (this != &el) {
     reset();
-    for (ulong i=0; i<el.size(); i++){
+    for (uint32_t i=0; i<el.size(); i++){
       add(el[i]);
     }
   }
@@ -161,13 +177,27 @@ AFArray<T>& AFArray<T>::operator+(const T& el){
 }
 
 template <class T>
+AFArray<T>& AFArray<T>::operator+(const AFArray<T>& el){
+  for (uint32_t i=0; i<el.size(); i++){
+    add(el[i]);
+  }
+  return *this;
+}
+
+template <class T>
+AFArray<T>& AFArray<T>::operator+=(const AFArray<T>& el){
+  (*this) = (*this) + el;
+  return *this;
+}
+
+template <class T>
 AFArray<T>& AFArray<T>::operator+=(const T& el){
   (*this) = (*this) + el;
   return *this;
 }
 
 template <class T>
-bool AFArray<T>::is_valid_index(ulong i){
+bool AFArray<T>::is_valid_index(uint32_t i){
   return i >= n;
 }
 
