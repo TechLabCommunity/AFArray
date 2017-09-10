@@ -77,7 +77,7 @@ void AFArray<T>::amortize(){
   if (real_len * 2 > MAX_LENGTH_ARRAY)
     real_len = MAX_LENGTH_ARRAY;
   else
-    real_len += INIT_DIMENSION;
+    real_len *= 2;
   arr = new T[real_len];
   for (uint32_t i=0; i<n; i++){
     arr[i] = copy_arr[i];
