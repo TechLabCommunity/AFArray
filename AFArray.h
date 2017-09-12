@@ -12,7 +12,7 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     T* arr;
 
-    uint32_t n, real_len, index;
+    unsigned int n, real_len, index;
 
     void amortize();
 
@@ -30,17 +30,17 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     void reset();
 
-    uint32_t size();
+    unsigned int size();
 
     bool is_full();
 
-    bool is_valid_index(uint32_t);
+    bool is_valid_index(const unsigned int);
 
-    const T& operator[](uint32_t);
+    const T& operator[](const unsigned int);
 
-    AFArray<uint32_t>& find(T&);
+    AFArray<unsigned int>& find(const T&);
 
-    AFArray<T>& slice(uint32_t, uint32_t, uint32_t = 1);
+    AFArray<T>& slice(const unsigned int, const unsigned int, const unsigned int = 1);
 
     AFArray<T>& operator=(const AFArray<T>&);
 
@@ -56,11 +56,10 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     const T& next();
 
-
 };
 
 template <class T>
-void AFArray<T>:: init(){
+void AFArray<T>::init(){
   arr = new T[real_len = INIT_DIMENSION];
   n = 0;
   index = -1;
@@ -69,8 +68,10 @@ void AFArray<T>:: init(){
 
 template <class T>
 void AFArray<T>::amortize(){
+  if (real_len == MAX_LENGTH_ARRAY)
+    return;
   T copy_arr[real_len];
-  for (uint32_t i=0; i<n; i++){
+  for (unsigned int i=0; i<n; i++){
     copy_arr[i] = arr[i];
   }
   memset(arr, 0, real_len);
@@ -79,7 +80,7 @@ void AFArray<T>::amortize(){
   else
     real_len *= 2;
   arr = new T[real_len];
-  for (uint32_t i=0; i<n; i++){
+  for (unsigned int i=0; i<n; i++){
     arr[i] = copy_arr[i];
   }
 }
@@ -93,7 +94,7 @@ template <class T>
 AFArray<T>::AFArray(const AFArray<T>* acopy){
   arr = 0;
   arr = new T[real_len = acopy->size()*2];
-  for (uint32_t i=0; i<acopy->size(); i++){
+  for (unsigned int i=0; i<acopy->size(); i++){
     arr[i] = acopy[i];
   }
   index = acopy->size()-1;
@@ -107,11 +108,11 @@ AFArray<T>::~AFArray(){
 
 template <class T>
 void AFArray<T>::add(const T& el){
-  if (is_full())
-    return;
   if (index == real_len-1){
     amortize();
   }
+  if (is_full())
+    return;
   index++;
   n++;
   arr[index] = el;
@@ -124,7 +125,7 @@ void AFArray<T>::reset(){
 }
 
 template <class T>
-uint32_t AFArray<T>::size(){
+unsigned int AFArray<T>::size(){
   return n;
 }
 
@@ -134,26 +135,26 @@ bool AFArray<T>::is_full(){
 }
 
 template <class T>
-AFArray<uint32_t>& AFArray<T>::find(T& el){
-  AFArray<uint32_t>* index_list = new AFArray<uint32_t>();
-  for (uint32_t i=0; i<size(); i++){
+AFArray<unsigned int>& AFArray<T>::find(const T& el){
+  AFArray<unsigned int> index_list;
+  for (unsigned int i=0; i<size(); i++){
     if (el == arr[i])
-      index_list->add(i);
+      index_list.add(i);
   }
   return index_list;
 }
 
 template <class T>
-const T& AFArray<T>::operator[](uint32_t i){
+const T& AFArray<T>::operator[](const unsigned int i){
   return arr[i];
 }
 
 template <class T>
-AFArray<T>& AFArray<T>::slice(uint32_t start, uint32_t end, uint32_t step){
+AFArray<T>& AFArray<T>::slice(const unsigned int start, const unsigned int end, const unsigned int step){
   AFArray<T>* new_arr = new AFArray<T>();
   if (end >= n)
     end = n-1;
-  for (uint32_t i=start; i<=end; i+=step){
+  for (unsigned int i=start; i<=end; i+=step){
     new_arr->add(arr[i]);
   }
   return *new_arr;
@@ -163,7 +164,7 @@ template <class T>
 AFArray<T>& AFArray<T>::operator=(const AFArray<T>& el){
   if (this != &el) {
     reset();
-    for (uint32_t i=0; i<el.size(); i++){
+    for (unsigned int i=0; i<el.size(); i++){
       add(el[i]);
     }
   }
@@ -178,7 +179,7 @@ AFArray<T>& AFArray<T>::operator+(const T& el){
 
 template <class T>
 AFArray<T>& AFArray<T>::operator+(const AFArray<T>& el){
-  for (uint32_t i=0; i<el.size(); i++){
+  for (unsigned int i=0; i<el.size(); i++){
     add(el[i]);
   }
   return *this;
@@ -197,8 +198,8 @@ AFArray<T>& AFArray<T>::operator+=(const T& el){
 }
 
 template <class T>
-bool AFArray<T>::is_valid_index(uint32_t i){
-  return i >= n;
+bool AFArray<T>::is_valid_index(const unsigned int i){
+  return i < n;
 }
 
 template <class T>
@@ -214,6 +215,5 @@ template <class T>
 const T& AFArray<T>::next(){
   return arr[GenericIterator<T>::index_iterator++];
 }
-
 
 #endif

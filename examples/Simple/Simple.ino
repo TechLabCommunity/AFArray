@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include <AFArray.h>
 
 AFArray<String> v1;
