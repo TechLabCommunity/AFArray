@@ -32,6 +32,8 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     unsigned int size();
 
+    unsigned int n_occurrences (const T&);
+
     bool is_full();
 
     bool is_valid_index(const unsigned int);
@@ -52,6 +54,10 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     AFArray<T>& operator+=(const AFArray<T>&);
 
+    bool operator==(const AFArray<T>&);
+
+    bool operator!=(const AFArray<T>&);
+
     bool has_next();
 
     const T& next();
@@ -62,7 +68,7 @@ template <class T>
 void AFArray<T>::init(){
   arr = new T[real_len = INIT_DIMENSION];
   n = 0;
-  index = -1;
+  index = 0;
   GenericIterator<T>::index_iterator = 0;
 }
 
@@ -97,8 +103,12 @@ AFArray<T>::AFArray(const AFArray<T>* acopy){
   for (unsigned int i=0; i<acopy->size(); i++){
     arr[i] = acopy[i];
   }
-  index = acopy->size()-1;
-  n = acopy->size();
+  if (acopy->size() > 0){
+    index = acopy->size()-1;
+    n = acopy->size();
+  }else{
+    index = n = 0;
+  }
 }
 
 template <class T>
@@ -113,7 +123,8 @@ void AFArray<T>::add(const T& el){
   }
   if (is_full())
     return;
-  index++;
+  if (n > 0)
+    index++;
   n++;
   arr[index] = el;
 }
@@ -127,6 +138,11 @@ void AFArray<T>::reset(){
 template <class T>
 unsigned int AFArray<T>::size(){
   return n;
+}
+
+template <class T>
+unsigned int AFArray<T>::n_occurrences (const T& el){
+  return find(el).size();
 }
 
 template <class T>
@@ -151,10 +167,13 @@ const T& AFArray<T>::operator[](const unsigned int i){
 
 template <class T>
 AFArray<T>& AFArray<T>::slice(const unsigned int start, const unsigned int end, const unsigned int step){
+  unsigned int _start = start, _end = end, _step = step;
   AFArray<T>* new_arr = new AFArray<T>();
-  if (end >= n)
-    end = n-1;
-  for (unsigned int i=start; i<=end; i+=step){
+  if (_end >= n)
+    _end = n-1;
+  if (n == 0 || _start >= _end)
+    return *new_arr;
+  for (unsigned int i=_start; i<=_end; i+=_step){
     new_arr->add(arr[i]);
   }
   return *new_arr;
@@ -195,6 +214,23 @@ template <class T>
 AFArray<T>& AFArray<T>::operator+=(const T& el){
   (*this) = (*this) + el;
   return *this;
+}
+
+template <class T>
+bool AFArray<T>::operator==(const AFArray<T>& el){
+  if (size() != el.size())
+    return false;
+  for (int i=0; i<size(); i++){
+    if (arr[i] != el[i]){
+      return false;
+    }
+  }
+  return true;
+}
+
+template <class T>
+bool AFArray<T>::operator!=(const AFArray<T>& el){
+  return !((*this) == el);
 }
 
 template <class T>

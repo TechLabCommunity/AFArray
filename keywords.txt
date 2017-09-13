@@ -20,6 +20,7 @@ is_valid_index	KEYWORD2
 slice	KEYWORD2
 has_next	KEYWORD2
 next	KEYWORD2
+n_occurrences	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
