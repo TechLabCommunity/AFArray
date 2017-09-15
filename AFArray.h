@@ -40,7 +40,9 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     const T* to_array(int * = -1);
 
-    void add(const T&);
+    bool add(const T&);
+
+    bool set(const unsigned int, const T&);
 
     void reset();
 
@@ -136,14 +138,23 @@ AFArray<T>::~AFArray(){
 }
 
 template <class T>
-void AFArray<T>::add(const T& el){
+bool AFArray<T>::add(const T& el){
   if (index == real_len-1){
     amortize();
   }
   if (is_full())
-    return;
+    return false;
   incr();
   arr[index] = el;
+  return true;
+}
+
+template <class T>
+bool AFArray<T>::set(const unsigned int index, const T& el){
+  if (!is_valid_index(index))
+    return false;
+  arr[index] = el;
+  return true;
 }
 
 template <class T>
@@ -179,8 +190,6 @@ AFArray<unsigned int>& AFArray<T>::find(const T& el){
 
 template <class T>
 T& AFArray<T>::operator[](const unsigned int i){
-  if (!is_valid_index(i))
-    return;
   return arr[i];
 }
 
@@ -273,10 +282,10 @@ const T& AFArray<T>::next(){
 
 template <class T>
 const T* AFArray<T>::to_array(int *len){
+  T *temp = new T[n];
   (*len) = 0;
   if (n == 0)
-    return 0;
-  T *temp = new T[n];
+    return temp;
   (*len) = n;
   for (unsigned int i=0; i<n; i++){
     temp[i] = arr[i];
