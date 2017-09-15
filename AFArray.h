@@ -282,15 +282,15 @@ const T& AFArray<T>::next(){
 
 template <class T>
 const T* AFArray<T>::to_array(int *len){
-  T *temp = new T[n];
+  T *buffer = new T[n];
   (*len) = 0;
   if (n == 0)
-    return temp;
+    return buffer;
   (*len) = n;
   for (unsigned int i=0; i<n; i++){
-    temp[i] = arr[i];
+    buffer[i] = arr[i];
   }
-  return temp;
+  return buffer;
 }
 
 #endif
