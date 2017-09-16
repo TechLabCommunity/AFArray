@@ -38,7 +38,7 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     AFArray<T>& slice(const unsigned int, const unsigned int, const unsigned int = 1);
 
-    const T* to_array(int * = -1);
+    T* to_array(int * = -1);
 
     bool add(const T&);
 
@@ -66,7 +66,7 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     //Operator
 
-    T& operator[](const unsigned int);
+    const T& operator[](const unsigned int);
 
     AFArray<T>& operator=(const AFArray<T>&);
 
@@ -189,7 +189,7 @@ AFArray<unsigned int>& AFArray<T>::find(const T& el){
 }
 
 template <class T>
-T& AFArray<T>::operator[](const unsigned int i){
+const T& AFArray<T>::operator[](const unsigned int i){
   return arr[i];
 }
 
@@ -281,7 +281,7 @@ const T& AFArray<T>::next(){
 }
 
 template <class T>
-const T* AFArray<T>::to_array(int *len){
+T* AFArray<T>::to_array(int *len){
   T *buffer = new T[n];
   (*len) = 0;
   if (n == 0)
