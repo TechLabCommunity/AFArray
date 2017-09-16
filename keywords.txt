@@ -14,7 +14,7 @@ AFArray	KEYWORD1
 
 add	KEYWORD2
 find KEYWORD2
-to_array KEYWORD2
+to_array	KEYWORD2
 reset	KEYWORD2
 size	KEYWORD2
 is_full	KEYWORD2
