@@ -1,7 +1,12 @@
 # AFArray
-Simple Array Structure for Arduino with template.
+
+Simple Array Structure for Arduino Framework with template.
 
 **Version 0.1**
+
+## Compatibility
+
+Tested with ATmega328p.
 
 ## Declare and initialize
 
