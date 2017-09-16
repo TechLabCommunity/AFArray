@@ -68,7 +68,7 @@ In the same way, you can set values:
 if (v1.is_valid_index(10))
   v1[10] = -4;
 ```
-If you don't want to waste your time, _set_ method fit the bill:
+If you don't want to waste your time, _set_ method fit the bill :ok_hand: :
 
 ```C++
 if (v1.set(10, -4))
