@@ -6,7 +6,7 @@ Simple Array Structure for Arduino Framework with template.
 
 ## Compatibility
 
-Tested with ATmega328p.
+Tested with ATmega328p, ESP32, ESP8266.
 
 ## Declare and initialize
 
