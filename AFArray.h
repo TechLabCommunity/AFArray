@@ -1,5 +1,5 @@
-#ifndef AFArray_H
-#define AFArray_H
+#ifndef AFARRAY_H
+#define AFARRAY_H
 
 #include "GenericIterator.h"
 
