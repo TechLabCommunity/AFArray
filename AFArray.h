@@ -44,6 +44,10 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     bool set(const unsigned int, const T&);
 
+    AFArray<T>& get_from_indexes(AFArray<unsigned int>&);
+
+    AFArray<T>& get_from_indexes(const unsigned int*, unsigned int);
+
     void reset();
 
     unsigned int size();
@@ -112,6 +116,25 @@ void AFArray<T>::amortize(){
   for (unsigned int i=0; i<n; i++){
     arr[i] = copy_arr[i];
   }
+}
+
+template <class T>
+AFArray<T>& AFArray<T>::get_from_indexes(AFArray<unsigned int>& list_index){
+  AFArray<T>* ret = new AFArray<T>;
+  if (list_index.size() == 0 || size() == 0)
+    return *ret;
+  while(list_index.has_next()){
+    unsigned int i = list_index.next();
+    if (is_valid_index(i))
+      ret->add(arr[i]);
+  }
+  return *ret;
+}
+
+template <class T>
+AFArray<T>& AFArray<T>::get_from_indexes(const unsigned int *arr, unsigned int len){
+  AFArray<unsigned int> to_pass (arr, len);
+  return get_from_indexes(to_pass);
 }
 
 template <class T>
