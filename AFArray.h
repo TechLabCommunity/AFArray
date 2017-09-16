@@ -62,11 +62,11 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     bool has_next();
 
-    const T& next();
+    T& next();
 
     //Operator
 
-    const T& operator[](const unsigned int);
+    T& operator[](const unsigned int);
 
     AFArray<T>& operator=(const AFArray<T>&);
 
@@ -189,7 +189,7 @@ AFArray<unsigned int>& AFArray<T>::find(const T& el){
 }
 
 template <class T>
-const T& AFArray<T>::operator[](const unsigned int i){
+T& AFArray<T>::operator[](const unsigned int i){
   return arr[i];
 }
 
@@ -276,7 +276,7 @@ bool AFArray<T>::has_next(){
 }
 
 template <class T>
-const T& AFArray<T>::next(){
+T& AFArray<T>::next(){
   return arr[GenericIterator<T>::index_iterator++];
 }
 

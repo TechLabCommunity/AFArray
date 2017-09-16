@@ -11,7 +11,7 @@ template <typename T> class GenericIterator{
 
     virtual bool has_next();
 
-    virtual const T& next();
+    virtual T& next();
 
 };
 
