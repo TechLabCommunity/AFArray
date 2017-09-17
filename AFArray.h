@@ -1,12 +1,19 @@
 #ifndef AFARRAY_H
 #define AFARRAY_H
 
+#include "ArduinoBoardManager/ArduinoBoardManager.h"
 #include "GenericIterator.h"
 
 #define INIT_DIMENSION 20
-#define MAX_LENGTH_ARRAY 160
+#define OFFSET_SRAM 100
 
 template <typename T> class AFArray : public GenericIterator<T>{
+
+  private:
+
+    static unsigned int MAX_LENGTH_ARRAY;
+
+    static unsigned int get_free_ram();
 
   protected:
 
@@ -85,11 +92,15 @@ template <typename T> class AFArray : public GenericIterator<T>{
 };
 
 template <class T>
+unsigned int AFArray<T>::MAX_LENGTH_ARRAY;
+
+template <class T>
 void AFArray<T>::init(){
   arr = new T[real_len = INIT_DIMENSION];
   n = 0;
   index = 0;
   GenericIterator<T>::index_iterator = 0;
+  MAX_LENGTH_ARRAY = ArduinoBoardManager::SRAM_SIZE / 2;
 }
 
 template <class T>
@@ -101,7 +112,7 @@ void inline AFArray<T>::incr(){
 
 template <class T>
 void AFArray<T>::amortize(){
-  if (real_len == MAX_LENGTH_ARRAY)
+  if (real_len == MAX_LENGTH_ARRAY || get_free_ram() < OFFSET_SRAM)
     return;
   T copy_arr[real_len];
   for (unsigned int i=0; i<n; i++){
@@ -314,6 +325,13 @@ T* AFArray<T>::to_array(int *len){
     buffer[i] = arr[i];
   }
   return buffer;
+}
+
+template <class T>
+unsigned int AFArray<T>::get_free_ram(){
+  extern int __heap_start, *__brkval;
+  int v;
+  return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval);
 }
 
 #endif

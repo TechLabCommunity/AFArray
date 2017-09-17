@@ -60,13 +60,17 @@ AFAString& AFAString::explode(const String& delimiter, const String& s){
   AFAString* explosion = new AFAString;
   String group_set = "";
   unsigned int length = s.length(), length_del = delimiter.length(), i = 0;
-  bool is_del;
+  bool is_del = false;
   while(i < s.length()){
     if (i+length_del-1 < length){ // delimiter?
       unsigned int j = i, k = 0;
       is_del = true;
-      while (is_del && k < length_del){
-        is_del = (delimiter[k] != s[j++]);
+      while (k < length_del){
+        if (delimiter[k] != s[j]){
+          is_del = false;
+          break;
+        }
+        j++;
         k++;
       }//while
       if (is_del){
