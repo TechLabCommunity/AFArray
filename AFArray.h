@@ -40,7 +40,7 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     T* to_array(int * = -1);
 
-    bool add(T&);
+    bool add(const T&);
 
     bool set(const unsigned int, T&);
 
@@ -161,7 +161,7 @@ AFArray<T>::~AFArray(){
 }
 
 template <class T>
-bool AFArray<T>::add(T& el){
+bool AFArray<T>::add(const T& el){
   if (index == real_len-1){
     amortize();
   }
