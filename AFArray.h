@@ -34,15 +34,15 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     //Some useful functions
 
-    AFArray<unsigned int>& find(const T&);
+    AFArray<unsigned int>& find(T);
 
     AFArray<T>& slice(const unsigned int, const unsigned int, const unsigned int = 1);
 
     T* to_array(int * = -1);
 
-    bool add(T&);
+    bool add(T);
 
-    bool set(const unsigned int, T&);
+    bool set(const unsigned int, T);
 
     AFArray<T>& get_from_indexes(AFArray<unsigned int>&);
 
@@ -52,7 +52,7 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     unsigned int size();
 
-    unsigned int n_occurrences (T&);
+    unsigned int n_occurrences (T);
 
     bool is_full();
 
@@ -74,11 +74,11 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     AFArray<T>& operator=(AFArray<T>&);
 
-    AFArray<T>& operator+(T&);
+    AFArray<T>& operator+(T);
 
     AFArray<T>& operator+(AFArray<T>&);
 
-    AFArray<T>& operator+=(T&);
+    AFArray<T>& operator+=(T);
 
     AFArray<T>& operator+=(AFArray<T>&);
 
@@ -161,7 +161,7 @@ AFArray<T>::~AFArray(){
 }
 
 template <class T>
-bool AFArray<T>::add(T& el){
+bool AFArray<T>::add(T el){
   if (index == real_len-1){
     amortize();
   }
@@ -173,7 +173,7 @@ bool AFArray<T>::add(T& el){
 }
 
 template <class T>
-bool AFArray<T>::set(const unsigned int index, T& el){
+bool AFArray<T>::set(const unsigned int index, T el){
   if (!is_valid_index(index))
     return false;
   arr[index] = el;
@@ -192,7 +192,7 @@ unsigned int AFArray<T>::size(){
 }
 
 template <class T>
-unsigned int AFArray<T>::n_occurrences (T& el){
+unsigned int AFArray<T>::n_occurrences (T el){
   return find(el).size();
 }
 
@@ -202,7 +202,7 @@ bool AFArray<T>::is_full(){
 }
 
 template <class T>
-AFArray<unsigned int>& AFArray<T>::find(const T& el){
+AFArray<unsigned int>& AFArray<T>::find(T el){
   AFArray<unsigned int> index_list;
   for (unsigned int i=0; i<size(); i++){
     if (el == arr[i])
@@ -242,7 +242,7 @@ AFArray<T>& AFArray<T>::operator=(AFArray<T>& el){
 }
 
 template <class T>
-AFArray<T>& AFArray<T>::operator+(T& el){
+AFArray<T>& AFArray<T>::operator+(T el){
   add(el);
   return *this;
 }
@@ -262,7 +262,7 @@ AFArray<T>& AFArray<T>::operator+=(AFArray<T>& el){
 }
 
 template <class T>
-AFArray<T>& AFArray<T>::operator+=(T& el){
+AFArray<T>& AFArray<T>::operator+=(T el){
   (*this) = (*this) + el;
   return *this;
 }
