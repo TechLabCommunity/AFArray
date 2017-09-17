@@ -42,7 +42,7 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     bool add(T);
 
-    bool set(const unsigned int, T&);
+    bool set(const unsigned int, T);
 
     AFArray<T>& get_from_indexes(AFArray<unsigned int>&);
 
@@ -173,7 +173,7 @@ bool AFArray<T>::add(T el){
 }
 
 template <class T>
-bool AFArray<T>::set(const unsigned int index, T& el){
+bool AFArray<T>::set(const unsigned int index, T el){
   if (!is_valid_index(index))
     return false;
   arr[index] = el;
