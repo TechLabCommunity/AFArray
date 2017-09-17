@@ -1,37 +1,37 @@
 #ifndef AFARRAYTYPE_H
 #define AFARRAYTYPE_H
 
-#include "AFArrayExtended.h"
+#include "AFArrayBasicType.h"
 
-class AFALong : public AFArrayExtended<long>{
-
-};
-
-class AFAULong : public AFArrayExtended<unsigned long>{
+class AFALong : public AFArrayBasicType<long>{
 
 };
 
-class AFAInt : public AFArrayExtended<int>{
+class AFAULong : public AFArrayBasicType<unsigned long>{
 
 };
 
-class AFAUInt : public AFArrayExtended<unsigned int>{
+class AFAInt : public AFArrayBasicType<int>{
 
 };
 
-class AFAFloat : public AFArrayExtended<float>{
+class AFAUInt : public AFArrayBasicType<unsigned int>{
 
 };
 
-class AFADouble : public AFArrayExtended<double>{
+class AFAFloat : public AFArrayBasicType<float>{
 
 };
 
-class AFAChar : public AFArrayExtended<char>{
+class AFADouble : public AFArrayBasicType<double>{
 
 };
 
-class AFArrayChar : public AFArrayExtended<char*>{
+class AFAChar : public AFArrayBasicType<char>{
+
+};
+
+class AFArrayChar : public AFArrayBasicType<char*>{
 
 };
 
