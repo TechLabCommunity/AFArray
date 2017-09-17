@@ -122,15 +122,6 @@ with a step (default = 1).
 ### reset
 _reset_() method destroy object and recreate it.
 
-## Generic iterator (experimental)
-
-AFArray inherits GenericIterator, a very stupid iterator.
-
-```C++
-  while (v1.has_next())
-    Serial.println(v1.next());
-```
-When while cycle exits, you can iterate it again.
 
 ### to_array
 
@@ -143,3 +134,13 @@ AFArray could be converted into array with template type.
   int n;
   int *arr = v1.to_array(&n);
 ```
+
+## Generic iterator (experimental)
+
+AFArray inherits GenericIterator, a very stupid iterator.
+
+```C++
+  while (v1.has_next())
+    Serial.println(v1.next());
+```
+When while cycle exits, you can iterate it again.
