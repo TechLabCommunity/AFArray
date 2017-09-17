@@ -4,6 +4,18 @@ Simple Array Structure for Arduino Framework with template.
 
 **Version 0.1**
 
+## Road To Version 0.2
+
+In next version, fundamental type will be implemented with extended methods.
+
+```C++
+AFAString list_string;
+AFAString exploded = list_string.explode("||", "Hi||I'm||so||happy!");
+while(exploded.has_next()){
+  Serial.println(exploded.next()); // [Hi, I'm, so, happy!]
+}
+```
+
 ## Compatibility
 
 Tested with ATmega328p, ESP32, ESP8266.
