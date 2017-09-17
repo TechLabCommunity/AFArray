@@ -6,31 +6,95 @@
 
 class AFALong : public AFArray<long>{
 
+  public:
+
+    AFALong& operator=(AFArray<long>&);
+
 };
+
+AFALong& AFALong::operator=(AFArray<long>& el){
+  AFArray<long>::operator=(el);
+  return *this;
+}
 
 class AFAULong : public AFArray<unsigned long>{
 
+  public:
+
+    AFAULong& operator=(AFArray<unsigned long>&);
+
 };
+
+AFAULong& AFAULong::operator=(AFArray<unsigned long>& el){
+  AFArray<unsigned long>::operator=(el);
+  return *this;
+}
 
 class AFAInt : public AFArray<int>{
 
+  public:
+
+    AFAInt& operator=(AFArray<int>&);
+
 };
+
+AFAInt& AFAInt::operator=(AFArray<int>& el){
+  AFArray<int>::operator=(el);
+  return *this;
+}
 
 class AFAUInt : public AFArray<unsigned int>{
 
+    public:
+
+      AFAUInt& operator=(AFArray<unsigned int>&);
+
 };
+
+AFAUInt& AFAUInt::operator=(AFArray<unsigned int>& el){
+  AFArray<unsigned int>::operator=(el);
+  return *this;
+}
 
 class AFAFloat : public AFArray<float>{
 
+  public:
+
+    AFAFloat& operator=(AFArray<float>&);
+
 };
+
+AFAFloat& AFAFloat::operator=(AFArray<float>& el){
+  AFArray<float>::operator=(el);
+  return *this;
+}
 
 class AFADouble : public AFArray<double>{
 
+  public:
+
+    AFADouble& operator=(AFArray<double>&);
+
 };
+
+AFADouble& AFADouble::operator=(AFArray<double>& el){
+  AFArray<double>::operator=(el);
+  return *this;
+}
 
 class AFAChar : public AFArray<char>{
 
+  public:
+
+    AFAChar& operator=(AFArray<char>&);
+
 };
+
+AFAChar& AFAChar::operator=(AFArray<char>& el){
+  AFArray<char>::operator=(el);
+  return *this;
+}
+
 
 class AFAString : public AFArray<String>{
 
@@ -53,6 +117,8 @@ class AFAString : public AFArray<String>{
     String implode(const char);
 
     String implode(const char*);
+
+    AFAString& operator=(AFArray<String>&);
 
 };
 
@@ -126,6 +192,11 @@ String AFAString::implode(const char delimiter){
 
 String AFAString::implode(const char* delimiter){
   return AFAString::implode(String(delimiter));
+}
+
+AFAString& AFAString::operator=(AFArray<String>& el){
+  AFArray<String>::operator=(el);
+  return *this;
 }
 
 #endif
