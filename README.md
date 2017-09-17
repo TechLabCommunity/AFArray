@@ -131,3 +131,15 @@ AFArray inherits GenericIterator, a very stupid iterator.
     Serial.println(v1.next());
 ```
 When while cycle exits, you can iterate it again.
+
+### to_array
+
+AFArray could be converted into array with template type.
+
+```C++
+  v1.add(2);
+  v1.add(1);
+  v1.add(10);
+  int n;
+  int *arr = v1.to_array(&n);
+```
