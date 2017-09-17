@@ -31,8 +31,4 @@ class AFAChar : public AFArray<char>{
 
 };
 
-class AFArrayChar : public AFArray<char*>{
-
-};
-
 #endif
