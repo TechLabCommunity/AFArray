@@ -143,4 +143,4 @@ AFArray inherits GenericIterator, a very stupid iterator.
   while (v1.has_next())
     Serial.println(v1.next());
 ```
-When while cycle exits, you can iterate it again.
+When while cycle exits, you'll could iterate it again.
