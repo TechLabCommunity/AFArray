@@ -60,7 +60,7 @@ AFArray<int> v4 = v3 + v2;
 ```
 ## Accessing elements
 
-AFarray ovverides [] operator. So
+AFarray overloads [] operator. So
 
 ```C++
 int a = v1[10];
