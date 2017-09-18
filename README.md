@@ -45,13 +45,13 @@ Serial.println("Size : "+v1.size()); // Size : 3
 **Note:** if element is inserted, _add_ method will return true, otherwise false. This could happen when AFArray reaches maximum size (MAX_LENGTH_ARRAY).
 To check it, use _is_full_ method. 
 
-AFArray has many overrided operators, add method could be replace by:
+AFArray has many overloaded operators, add method could be replace by:
 
 ```C++
 v1 += 9;
 v1 = v1 + 100;
 ```
-operators are overrided for AFArray too.
+operators are overloaded for AFArray too.
 ```C++
 AFArray<int> v2;
 AFArray<int> v3;
