@@ -30,7 +30,7 @@ As you can see from Header, there are some copy contructors too.
 Comparing operator == and != are implemented.
 ```C++
 if (v1 == v2)
-  Serial.println("This two AFArray are equal!");
+  Serial.println("This two AFArray are equals!");
 ```
 
 ## Adding elements
