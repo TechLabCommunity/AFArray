@@ -4,17 +4,9 @@ Simple Array Structure for Arduino Framework with template.
 
 **Version 0.1.1**
 
-## Road To Version 0.2
+## Road To Version 0.3
 
-In next version, fundamental type will be implemented with extended methods.
-
-```C++
-AFAString list_string;
-AFAString exploded = list_string.explode("||", "Hi||I'm||so||happy!");
-while(exploded.has_next()){
-  Serial.println(exploded.next()); // [Hi, I'm, so, happy!]
-}
-```
+In next version, AFArray will manage memory in most efficient way.
 
 ## Compatibility
 
@@ -144,3 +136,10 @@ AFArray inherits GenericIterator, a very stupid iterator.
     Serial.println(v1.next());
 ```
 When while cycle exits, you'll could iterate it again.
+
+## EFundamental Type and extended methods
+
+...
+
+
+
