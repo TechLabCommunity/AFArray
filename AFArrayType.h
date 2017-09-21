@@ -120,22 +120,6 @@ class AFAString : public AFArray<String>{
 
     AFAString& operator=(AFArray<String>&);
 
-    //TODO:
-
-    AFAString& operator=(AFArray<int>&);
-
-    AFAString& operator=(AFArray<unsigned int>&);
-
-    AFAString& operator=(AFArray<long>&);
-
-    AFAString& operator=(AFArray<unsigned long>&);
-
-    AFAString& operator=(AFArray<float>&);
-
-    AFAString& operator=(AFArray<double>&);
-
-    AFAString& operator=(AFArray<char>&);
-
 };
 
 AFAString& AFAString::explode(const String& delimiter, const String& s){
