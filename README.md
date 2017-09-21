@@ -2,7 +2,19 @@
 
 Simple Array Structure for Arduino Framework with template.
 
-**Version 0.1**
+**Version 0.1.1**
+
+## Road To Version 0.2
+
+In next version, fundamental type will be implemented with extended methods.
+
+```C++
+AFAString list_string;
+AFAString exploded = list_string.explode("||", "Hi||I'm||so||happy!");
+while(exploded.has_next()){
+  Serial.println(exploded.next()); // [Hi, I'm, so, happy!]
+}
+```
 
 ## Compatibility
 
@@ -18,7 +30,7 @@ As you can see from Header, there are some copy contructors too.
 Comparing operator == and != are implemented.
 ```C++
 if (v1 == v2)
-  Serial.println("This two AFArray are equal!");
+  Serial.println("This two AFArray are equals!");
 ```
 
 ## Adding elements
@@ -33,13 +45,13 @@ Serial.println("Size : "+v1.size()); // Size : 3
 **Note:** if element is inserted, _add_ method will return true, otherwise false. This could happen when AFArray reaches maximum size (MAX_LENGTH_ARRAY).
 To check it, use _is_full_ method. 
 
-AFArray has many overrided operators, add method could be replace by:
+AFArray has many overloaded operators, add method could be replaced by:
 
 ```C++
 v1 += 9;
 v1 = v1 + 100;
 ```
-operators are overrided for AFArray too.
+operators are overloaded for AFArray too.
 ```C++
 AFArray<int> v2;
 AFArray<int> v3;
@@ -48,7 +60,7 @@ AFArray<int> v4 = v3 + v2;
 ```
 ## Accessing elements
 
-AFarray ovverides [] operator. So
+AFarray overloads [] operator. So
 
 ```C++
 int a = v1[10];
@@ -110,6 +122,19 @@ with a step (default = 1).
 ### reset
 _reset_() method destroy object and recreate it.
 
+
+### to_array
+
+AFArray could be converted into array with template type.
+
+```C++
+  v1.add(2);
+  v1.add(1);
+  v1.add(10);
+  int n;
+  int *arr = v1.to_array(&n);
+```
+
 ## Generic iterator (experimental)
 
 AFArray inherits GenericIterator, a very stupid iterator.
@@ -118,4 +143,4 @@ AFArray inherits GenericIterator, a very stupid iterator.
   while (v1.has_next())
     Serial.println(v1.next());
 ```
-When while cycle exits, you can iterate it again.
+When while cycle exits, you'll could iterate it again.

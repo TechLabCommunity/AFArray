@@ -233,7 +233,7 @@ AFArray<T>& AFArray<T>::slice(const unsigned int start, const unsigned int end, 
   AFArray<T>* new_arr = new AFArray<T>();
   if (_end >= n)
     _end = n-1;
-  if (n == 0 || _start >= _end || step == 0)
+  if (n == 0 || _start >= _end || _step == 0)
     return *new_arr;
   for (unsigned int i=_start; i<=_end; i+=_step){
     new_arr->add(arr[i]);
