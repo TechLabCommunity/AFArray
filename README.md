@@ -137,9 +137,9 @@ AFArray inherits GenericIterator, a very stupid iterator.
 ```
 When while cycle exits, you'll could iterate it again.
 
-## EFundamental Type and extended methods
+## Fundamental Type and extended methods
 
-...
+See AFArrayType.
 
 
 
