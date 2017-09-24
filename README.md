@@ -6,7 +6,7 @@ Simple Array Structure for Arduino Framework with template.
 
 ## Road To Version 0.3
 
-In next version, AFArray will manage memory in most efficient way.
+In next version, AFArray will manage memory in most efficient way, more cast.
 
 ## Compatibility
 
@@ -111,6 +111,13 @@ with a step (default = 1).
   v1.add(6);
   AFArray<int> part = v1.slice(1, 5, 2); //1, -4, 6.
 ```
+with slice method, you can remove an element from AFArray:
+
+```C++
+  //v1 is initialized and add element
+  AFArray<int> removed = v1.slice(0, 3) + v1.slice(5, 10) ; //removes 5th element.
+```
+
 ### reset
 _reset_() method destroy object and recreate it.
 
@@ -139,7 +146,27 @@ When while cycle exits, you'll could iterate it again.
 
 ## Fundamental Type and extended methods
 
-See AFArrayType.
+Version 0.2 introduces specific AFArray for each fundamental type in Arduino like AFAInt, AFAUInt, AFAString etc.
+In particular, AFAString has two new methods: explode and implode.
 
+_Explode_ method converts a string with a separator into AFArray<String>.
 
+```C++
+  String s = "hi;this;is;a;string;with;semicolo;separator";
+  AFAString exploded = AFAString::explode(';', s); //[hi, this, is, a ...]
+```
 
+_Explode_ method is the opposite one. It converts a AFArray<String> into a string with a separator.
+
+```C++
+  AFAString collection;
+  collection.add("Now");
+  collection.add("I");
+  collection.add("want");
+  collection.add("to");
+  collection.add("join");
+  String s = collection.implode(' ', collection);//"Now I want to join"
+```
+
+**Note:** AFAString corrisponding to AFArray<String>, but it has explode and implode method.
+Actually, AFAInt is equivalent to AFArray<int>, in the same way AFALong is like AFArray<long> and so on.
