@@ -114,7 +114,7 @@ with a step (default = 1).
 with slice method, you can remove an element from AFArray:
 
 ```C++
-  //v1 is initialized and add element
+  //v1 is initialized and add elements
   AFArray<int> removed = v1.slice(0, 3) + v1.slice(5, 10) ; //removes 5th element.
 ```
 
@@ -156,7 +156,7 @@ _Explode_ method converts a string with a separator into AFArray<String>.
   AFAString exploded = AFAString::explode(';', s); //[hi, this, is, a ...]
 ```
 
-_Explode_ method is the opposite one. It converts a AFArray<String> into a string with a separator.
+_Implode_ method is the opposite one. It converts a AFArray<String> into a string with a separator.
 
 ```C++
   AFAString collection;
