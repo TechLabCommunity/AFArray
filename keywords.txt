@@ -27,6 +27,7 @@ reset	KEYWORD2
 size	KEYWORD2
 is_full	KEYWORD2
 is_valid_index	KEYWORD2
+get_from_indexes  KEYWORD2
 slice	KEYWORD2
 has_next	KEYWORD2
 next	KEYWORD2
