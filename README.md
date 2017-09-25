@@ -83,7 +83,7 @@ if (v1.set(10, -4))
 
 ### find and n_occurrences
 
-If your type has overrided compare operator ==, _find(x)_ returns an _AFArray<unsgined int>_ that contains all indexes where x is in. _n_occurrences_
+If your type has overrided compare operator ==, _find(x)_ returns an _AFArray&lt;unsgined int&gt;_ that contains all indexes where x is in. _n_occurrences_
 returns only number of occurrences.
 
 ```C++
@@ -98,7 +98,7 @@ returns only number of occurrences.
 
 ### slice
 
-Sometimes, you need a part of a list with a specific step. _slice_ method returns an AFArray<T> with all elements from start index to end one
+Sometimes, you need a part of a list with a specific step. _slice_ method returns an AFArray&lt;T&gt; with all elements from start index to end one
 with a step (default = 1).
 
 
@@ -149,14 +149,14 @@ When while cycle exits, you'll could iterate it again.
 Version 0.2 introduces specific AFArray for each fundamental type in Arduino like AFAInt, AFAUInt, AFAString etc.
 In particular, AFAString has two new methods: explode and implode.
 
-_Explode_ method converts a string with a separator into AFArray<String>.
+_Explode_ method converts a string with a separator into AFArray&lt;String&gt;.
 
 ```C++
   String s = "hi;this;is;a;string;with;semicolo;separator";
   AFAString exploded = AFAString::explode(';', s); //[hi, this, is, a ...]
 ```
 
-_Implode_ method is the opposite one. It converts a AFArray<String> into a string with a separator.
+_Implode_ method is the opposite one. It converts a AFArray&lt;String&gt; into a string with a separator.
 
 ```C++
   AFAString collection;
@@ -168,5 +168,5 @@ _Implode_ method is the opposite one. It converts a AFArray<String> into a strin
   String s = collection.implode(' ', collection);//"Now I want to join"
 ```
 
-**Note:** AFAString corrisponding to AFArray<String>, but it has explode and implode method.
-Actually, AFAInt is equivalent to AFArray<int>, in the same way AFALong is like AFArray<long> and so on.
+**Note:** AFAString corrisponding to AFArray&lt;String&gt;, but it has explode and implode method.
+Actually, AFAInt is equivalent to AFArray&lt;int&gt;, in the same way AFALong is like AFArray&lt;long&gt; and so on.
