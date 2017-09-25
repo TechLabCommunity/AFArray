@@ -96,6 +96,22 @@ returns only number of occurrences.
   Serial.println(v1.n_occurrences(3)); //Prints "2".
 ```
 
+### get_from_indexes
+
+If you want to get some element from a list of indexes, _get_from_indexes_ accepts an array or AFArray int and returns an AFArray with those elements.
+
+```C++
+  unsigned int indexes[4] = {2, 4, 8, 9};
+  AFArray<int> some_elements = v1.get_from_indexes(indexes, 4); //some_elements contains only elements in positions 2,4,8,9.
+```
+
+You can combine this method with find:
+
+```C++
+  AFArray<int> found = v1.find(5);
+  AFArray<int> some_elements = v1.get_from_indexes(found); //some_elements contains only elements in positions where 5 was found.
+```
+
 ### slice
 
 Sometimes, you need a part of a list with a specific step. _slice_ method returns an AFArray&lt;T&gt; with all elements from start index to end one
