@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "AFArray.h"
 
-class AFALong : public AFArray<long>{
+class AFALong : public AFArraySortable<long>{
 
   public:
 
@@ -17,7 +17,7 @@ AFALong& AFALong::operator=(AFArray<long>& el){
   return *this;
 }
 
-class AFAULong : public AFArray<unsigned long>{
+class AFAULong : public AFArraySortable<unsigned long>{
 
   public:
 
@@ -30,7 +30,7 @@ AFAULong& AFAULong::operator=(AFArray<unsigned long>& el){
   return *this;
 }
 
-class AFAInt : public AFArray<int>{
+class AFAInt : public AFArraySortable<int>{
 
   public:
 
@@ -43,7 +43,7 @@ AFAInt& AFAInt::operator=(AFArray<int>& el){
   return *this;
 }
 
-class AFAUInt : public AFArray<unsigned int>{
+class AFAUInt : public AFArraySortable<unsigned int>{
 
     public:
 
@@ -56,7 +56,7 @@ AFAUInt& AFAUInt::operator=(AFArray<unsigned int>& el){
   return *this;
 }
 
-class AFAFloat : public AFArray<float>{
+class AFAFloat : public AFArraySortable<float>{
 
   public:
 
@@ -69,7 +69,7 @@ AFAFloat& AFAFloat::operator=(AFArray<float>& el){
   return *this;
 }
 
-class AFADouble : public AFArray<double>{
+class AFADouble : public AFArraySortable<double>{
 
   public:
 
@@ -82,7 +82,7 @@ AFADouble& AFADouble::operator=(AFArray<double>& el){
   return *this;
 }
 
-class AFAChar : public AFArray<char>{
+class AFAChar : public AFArraySortable<char>{
 
   public:
 
@@ -96,7 +96,7 @@ AFAChar& AFAChar::operator=(AFArray<char>& el){
 }
 
 
-class AFAString : public AFArray<String>{
+class AFAString : public AFArraySortable<String>{
 
   public:
 
