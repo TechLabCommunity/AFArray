@@ -1,7 +1,6 @@
 #ifndef AFARRAY_H
 #define AFARRAY_H
 
-#include "ArduinoBoardManager/ArduinoBoardManager.h"
 #include "GenericIterator.h"
 
 #define INIT_DIMENSION 20
@@ -89,7 +88,7 @@ template <typename T> class AFArray : public GenericIterator<T>{
 };
 
 template <class T>
-unsigned int AFArray<T>::MAX_LENGTH_ARRAY = ArduinoBoardManager::SRAM_SIZE / 4;
+unsigned int AFArray<T>::MAX_LENGTH_ARRAY = 150;
 
 template <class T>
 void AFArray<T>::init(){
