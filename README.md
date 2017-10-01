@@ -2,11 +2,11 @@
 
 Simple Array Structure for Arduino Framework with template.
 
-**Version 0.2**
+**Version 0.2.1**
 
 ## Road To Version 0.3
 
-In next version, AFArray will manage memory in most efficient way, more cast.
+In next version, AFArray will manage memory in most efficient way, more cast and sortable AFArray.
 
 ## Compatibility
 
