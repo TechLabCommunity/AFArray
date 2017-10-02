@@ -1,9 +1,21 @@
 #ifndef AFARRAY_H
 #define AFARRAY_H
 
-#include "GenericIterator.h"
-
 #define INIT_DIMENSION 20
+
+template <typename T> class GenericIterator{
+
+  protected:
+
+    unsigned long index_iterator = 0;
+
+  public:
+
+    virtual bool has_next();
+
+    virtual T& next();
+
+};
 
 template <typename T> class AFArray : public GenericIterator<T>{
 
@@ -22,6 +34,8 @@ template <typename T> class AFArray : public GenericIterator<T>{
     void init();
 
     void inline incr();
+
+    void reverse(T*, unsigned int, unsigned int);
 
   public:
 
@@ -52,6 +66,8 @@ template <typename T> class AFArray : public GenericIterator<T>{
     AFArray<T>& get_from_indexes(const unsigned int*, unsigned int);
 
     void reset();
+
+    void reverse();
 
     unsigned int size();
 
@@ -92,16 +108,18 @@ template <typename T> class AFArraySortable  : public AFArray<T>{
 
   private:
 
-    void sort(AFArray<T>&, int, int);
+    void sort(AFArray<T>&, unsigned int, unsigned int);
 
   public:
 
-    void sort();
+    void asc_sort();
+
+    void desc_sort();
 
 };
 
 template <class T>
-void AFArraySortable<T>::sort(AFArray<T>& arr, int left, int right) {
+void AFArraySortable<T>::sort(AFArray<T>& arr, unsigned int left, unsigned int right) {
       int i = left, j = right;
       int tmp;
       int pivot = arr[(left + right) / 2];
@@ -125,11 +143,16 @@ void AFArraySortable<T>::sort(AFArray<T>& arr, int left, int right) {
 }
 
 template <class T>
-void AFArraySortable<T>::sort(){
+void AFArraySortable<T>::asc_sort(){
   if (this->n > 1)
     sort(*this, 0, this->n-1);
 }
 
+template <class T>
+void AFArraySortable<T>::desc_sort(){
+  asc_sort();
+  AFArray<T>::reverse();
+}
 
 template <class T>
 unsigned int AFArray<T>::MAX_LENGTH_ARRAY = 150;
@@ -234,6 +257,22 @@ template <class T>
 void AFArray<T>::reset(){
   delete[] arr;
   init();
+}
+
+template <class T>
+void AFArray<T>::reverse(T* arr, unsigned int left, unsigned int right){
+  if (left < right){
+    T temp = arr[left];
+    arr[left] = arr[right];
+    arr[right] = temp;
+    reverse(arr, ++left, --right);
+  }
+}
+
+template <class T>
+void AFArray<T>::reverse(){
+  if (n > 1)
+    reverse(arr, 0, n-1);
 }
 
 template <class T>

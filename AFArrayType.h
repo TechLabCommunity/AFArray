@@ -167,7 +167,7 @@ AFAString& AFAString::explode(const char* delimiter, const String& s){
 String AFAString::implode(const String& glue, AFAString& list){
   if (list.size() == 0)
     return "";
-  String glued = list[1];
+  String glued = list[0];
   for (unsigned int i=1; i<list.size(); i++){
     glued += (glue + list[i]);
   }
