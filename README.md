@@ -2,7 +2,7 @@
 
 Simple Array Structure for Arduino Framework with template.
 
-**Version 0.3a**
+**Version 0.3b**
 
 ## Compatibility
 
