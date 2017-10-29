@@ -6,15 +6,15 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-AFArray KEYWORD1
-AFAInt  KEYWORD1
-AFALong KEYWORD1
-AFAULong    KEYWORD1
-AFAUInt KEYWORD1
-AFAFloat    
-AFADouble   KEYWORD1
-AFAChar KEYWORD1
-AFAString   KEYWORD1
+AFArray	KEYWORD1
+AFAInt	KEYWORD1
+AFALong	KEYWORD1
+AFAULong	KEYWORD1
+AFAUInt	KEYWORD1
+AFAFloat	KEYWORD1    
+AFADouble	KEYWORD1
+AFAChar	KEYWORD1
+AFAString	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -32,8 +32,8 @@ slice	KEYWORD2
 has_next	KEYWORD2
 next	KEYWORD2
 n_occurrences	KEYWORD2
-explode KEYWORD2
-implode KEYWORD2
+explode	KEYWORD2
+implode	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
