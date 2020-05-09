@@ -146,6 +146,18 @@ AFArray could be converted into array with template type.
   int *arr = v1.to_array(&n);
 ```
 
+
+### remove_from_index
+
+AFArray could be converted into array with template type.
+
+```C++
+  v1.add(56);
+  v1.add(45);
+  v1.add(13);
+  v1.remove_from_index(1); //Remove 56. true if operation succeeds.
+```
+
 ## Generic iterator (experimental)
 
 AFArray inherits GenericIterator, a very stupid iterator.
