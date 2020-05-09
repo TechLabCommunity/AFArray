@@ -34,6 +34,7 @@ next	KEYWORD2
 n_occurrences	KEYWORD2
 explode	KEYWORD2
 implode	KEYWORD2
+remove_from_index	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

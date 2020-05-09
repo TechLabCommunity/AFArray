@@ -2,7 +2,7 @@
 
 Simple Array Structure for Arduino Framework with template.
 
-**Version 0.3.1**
+**Version 0.4.0**
 
 ## Compatibility
 
@@ -144,6 +144,18 @@ AFArray could be converted into array with template type.
   v1.add(10);
   int n;
   int *arr = v1.to_array(&n);
+```
+
+
+### remove_from_index
+
+AFArray could be converted into array with template type.
+
+```C++
+  v1.add(56);
+  v1.add(45);
+  v1.add(13);
+  v1.remove_from_index(1); //Remove 56. true if operation succeeds.
 ```
 
 ## Generic iterator (experimental)

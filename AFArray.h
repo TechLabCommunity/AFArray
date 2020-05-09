@@ -77,9 +77,7 @@ template <typename T> class AFArray : public GenericIterator<T>{
 
     bool is_valid_index(const unsigned int);
 
-    bool operator==(AFArray<T>&);
-
-    bool operator!=(AFArray<T>&);
+    bool remove_from_index(const unsigned int);
 
     //Generic Iterator
 
@@ -100,6 +98,10 @@ template <typename T> class AFArray : public GenericIterator<T>{
     AFArray<T>& operator+=(const T);
 
     AFArray<T>& operator+=(AFArray<T>&);
+
+    bool operator==(AFArray<T>&);
+
+    bool operator!=(AFArray<T>&);
 
 };
 
@@ -384,6 +386,21 @@ bool AFArray<T>::has_next(){
     GenericIterator<T>::index_iterator = 0;
     return false;
   }
+  return true;
+}
+
+template <class T>
+bool AFArray<T>::remove_from_index(const unsigned int index){
+  if (!is_valid_index(index)){
+    return false;
+  }
+  AFArray<T>* temp = new AFArray<T>();
+  for (unsigned int i=0; i<size(); i++){
+    if (i!=index){
+      temp->add(arr[i]);
+    }
+  }
+  arr = temp;
   return true;
 }
 
