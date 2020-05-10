@@ -149,7 +149,7 @@ AFArray could be converted into array with template type.
 
 ### remove_from_index
 
-AFArray could be converted into array with template type.
+AFArray could remove an element from index.
 
 ```C++
   v1.add(56);
